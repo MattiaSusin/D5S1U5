@@ -1,9 +1,6 @@
 package mattiasusin.D5S1U5.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,17 +24,21 @@ public class Postazione {
     private TipoPostazione tipoPostazione;
     private int maxPersone;
 
+    @ManyToOne
+    @JoinColumn(name = "edificio_id")
+    private Edificio edificio;
+
     // COSTRUTTORI
 
-
-    public Postazione(String descrizione, TipoPostazione tipoPostazione, int maxPersone) {
+    public Postazione(String descrizione, TipoPostazione tipoPostazione, int maxPersone, Edificio edificio) {
         this.descrizione = descrizione;
         this.tipoPostazione = tipoPostazione;
         this.maxPersone = maxPersone;
+        this.edificio = edificio;
     }
 
-    // TO STRING
 
+    // TO STRING
 
     @Override
     public String toString() {
